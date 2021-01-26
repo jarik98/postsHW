@@ -1,0 +1,65 @@
+
+<ng-template #content let-c="close" let-d="dismiss" >
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Виконайте вхід</h4>
+    <!-- <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button> -->
+  </div>
+  <div class="modal-body">
+    <p>Зайдіть в систему</p>
+  </div>
+
+  <form action="" #form='ngForm' class="forLogin">
+    <input type="text" class="form-control" #login placeholder="логін" aria-label="Username" aria-describedby="basic-addon1">
+  </form>
+
+  <form action="" #form='ngForm' class="forPass">
+    <input type="password" class="form-control" #password placeholder="пароль" aria-label="Username" aria-describedby="basic-addon1">
+  </form>
+
+
+  <span [hidden]='passwordFalse' class=" alert alert-danger">Неправильно введений пароль або логін (default user - user, admin - admin)</span>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="closePop(login.value,password.value)">Вхід</button>
+    <button type="button" class="btn btn-outline-dark" (click)="open2(mymodal)">Реєстрація</button>
+  </div>
+
+</ng-template>
+
+
+<!-- second modale window -->
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header ">
+    <h4 class="modal-title" id="modal-basic-title">Реєстрація</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+  </div>
+  <form action="" #form0='ngForm' id="registration">
+    <input type="text" class="form-control" name='name' #name='ngModel' ngModel placeholder="імя" pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$" required>
+    <p [hidden]='name0' class="alert alert-danger">тільки латинські літери</p>
+    <input type="text" class="form-control" name='surname' #surname='ngModel' ngModel placeholder="прізвище" pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$" required>
+    <p [hidden]='surname0' class="alert alert-danger">тільки латинські літери</p>
+    <input type="text" class="form-control" name='login' #login='ngModel' ngModel placeholder="логін" required pattern="^(?=.*[A-Za-z0-9]$)[A-Za-z][A-Za-z\d.-]{0,19}$">
+    <p [hidden]='login0' class="alert alert-danger">логін має містити латинські літери, починатися з літери, може містити цифри</p>
+    <input type="text" class="form-control" name='password' #password='ngModel' ngModel placeholder="пароль" required pattern="^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$">
+    <p [hidden]='password0' class="alert alert-danger">пароль повинен містити більше 6 символів і включати букви і цифри</p>
+    <input type="text" class="form-control" name='passwordAgain' #passwordAgain='ngModel' ngModel placeholder="ще раз пароль" required pattern="^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$">
+    <p [hidden]='passwordAgain0' class="alert alert-danger">паролі не співпадають</p>
+    <input type="text" class="form-control" name='emeil' #emeil='ngModel' ngModel placeholder="емейл" required pattern="(\W|^)[\w.+\-]*@gmail\.com(\W|$)">
+    <p [hidden]='emeil0' class="alert alert-danger">емейл повинен закінчуватися на @gmail.com</p>
+    </form>
+<!-- <p>{{form0.valid | json}}</p>
+<p> {{emeil.valid}}</p> -->
+  <div class="modal-footer">
+    <button *ngIf='form0.valid && password.value===passwordAgain.value' type="button" class="btn btn-outline-success" (click)="modal.close('Save click');makeNewUser(name.value,surname.value,login.value,password.value,emeil.value)">Ok</button>
+    <button [hidden]='form0.valid && password.value===passwordAgain.value' type="button" class="btn btn-outline-dark" (click)="test(name.valid,surname.valid,login.valid,password.valid,passwordAgain.valid,emeil.valid,password.value,passwordAgain.value)">Ok</button>
+  </div>
+</ng-template>
+
+

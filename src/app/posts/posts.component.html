@@ -1,0 +1,13 @@
+
+<div *ngFor='let post of posts.slice().reverse(); let i = index'>
+  <h1 [hidden]='post.redaction'>{{post.theme}}</h1>
+  <input [hidden]='!post.redaction' type="text" #qwer value="{{post.theme}}">
+  <h4 [hidden]='post.redaction'>{{post.txt}}</h4>
+  <input [hidden]='!post.redaction' type="text" #rewq value="{{post.txt}}">
+  <p>{{post.date}}</p>
+  <button class="btn btn-success" (click)='redaction(qwer.value, rewq.value, i)' *ngIf='post.redaction'>Примінити</button>
+  <button class='btn btn-info' (click)='redactionMake(i)'>редагувати</button>
+  <button class="btn btn-danger" [hidden]="!(username==='admin')" (click)='deletePost(i)'>Видалити пост</button>
+  <h2>{{i + 'number index'}}</h2>
+</div>
+

@@ -1,0 +1,21 @@
+<form action="" #form1='ngForm' id="createPost">
+<input type="text" placeholder="тема допису" name="theme" #theme='ngModel' ngModel required>
+<input type="text" placeholder="текст допису" name="txt" #txt='ngModel' ngModel required>
+<!-- <p>{{form1.valid|json}}</p> -->
+<button [disabled]='!form1.valid' class="btn btn-lg btn-success" (click)='createNewPost(theme.value, txt.value)'>Розмістити</button>
+</form>
+<button class="btn btn-lg btn-danger" [hidden]="!(username==='admin')" (click)="open(content)"> Видалити всі пости</button>
+<hr>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Дійсно бажаєте видалити?</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click');deleteAll()">Так</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ні</button>
+  </div>
+</ng-template>

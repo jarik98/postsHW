@@ -1,0 +1,19 @@
+.logOut{
+  position: absolute;
+  right: 50%;
+  color: yellow;
+
+}
+
+.header{
+ position: fixed top;
+ background: lightslategray;
+ color: white;
+ font-weight: 900;
+ padding: 10px;
+}
+
+.logOut:hover{
+ color: lightskyblue;
+ cursor: pointer;
+}
